@@ -253,11 +253,3 @@ void DailySchedule5(string EnterFile) {
         }
     }
 }
-
-int main() {
-    // Example usage: Generate schedule and display it
-    DailySchedule("ProgrammeFiles.csv");
-    DailySchedule2("ProgrammeFiles.csv");
-    DailySchedule3("ProgrammeFiles.csv");
-    return 0;
-}
