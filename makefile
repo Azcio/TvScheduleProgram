@@ -8,6 +8,15 @@ main.o: main.cpp
 channel.o: channel.cpp channel.h
 	g++ -c channel.cpp
 
+ChannelManagerTests.o: ChannelManagerTests.cpp channel.h
+	g++ -c ChannelManagerTests.cpp	
+
+
+
+
+schedule.o: schedule.cpp schedule.h
+	g++ -c schedule.cpp
+
 
 
 clean:
