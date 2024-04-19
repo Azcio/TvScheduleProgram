@@ -1,16 +1,11 @@
-
-output: main.o channel.o 
-	g++ main.o channel.o -o output
+output: main.o channel.o  schedule.o
+	g++ main.o channel.o  schedule.o -o output
 
 main.o: main.cpp
 	g++ -c main.cpp
 
 channel.o: channel.cpp channel.h
 	g++ -c channel.cpp
-
-ChannelManagerTests.o: ChannelManagerTests.cpp channel.h
-	g++ -c ChannelManagerTests.cpp	
-
 
 
 
@@ -21,4 +16,3 @@ schedule.o: schedule.cpp schedule.h
 
 clean:
 	rm *.o output
-
