@@ -1,18 +1,28 @@
 #include <iostream>
-#include <fstream>
+#include <string>
+#include <sstream>
 #include "channel.h"
 
 using namespace std;
 
-// User enters their choice in the menu
-int choice;
+int getValidChoice() {
+    string input;
+    int choice;
+    while (true) {
+        getline(cin, input);  // Get the entire line as a string
+        stringstream stream(input);  // Use stringstream for conversion
+        if (stream >> choice && !(stream >> input)) {  // Check for a valid integer and no additional characters
+            return choice;
+        }
+        cout << "Invalid input. Please enter a number from the menu options.\n";
+    }
+}
 
-void menu()
-{
+void menu() {
     cout << "|-------------------------|\n";
     cout << "| ****     Menu      **** |\n";
     cout << "|-------------------------|\n";
-    // options of actions
+    // Options of actions
     cout << "| 1. See channel list     |\n";
     cout << "| 2. Switch to channel    |\n";
     cout << "| 3. See favorites        |\n";
@@ -25,27 +35,28 @@ int main() {
     cout << "Welcome to Cloud TV\n";
 
     ChannelManager channelManager;
+    int choice;
 
     do {
         menu();  // Display the menu
-        cin >> choice;
-        cin.ignore();  // Clear out any extra input
+        choice = getValidChoice();  // Get a valid choice from the user
 
         switch (choice) {
         case 1:
             channelManager.displayChannels();
             break;
         case 2:
-            cout << "Functionality to switch to a channel will be implemented here.\n";
+            cout << "Switch to channel functionality is not implemented yet.\n";
             break;
         case 3:
-            cout << "Functionality to see favorites will be implemented here.\n";
+            cout << "See favorites functionality is not implemented yet.\n";
             break;
         case 0:
             cout << "Exiting the program.\n";
             break;
         default:
-            cout << "Invalid choice. Please try again.\n";
+            cout << "Please enter a valid choice.\n";
+            break;
         }
     } while (choice != 0);
 
