@@ -2,14 +2,14 @@
 #define CHANNEL_H
 
 #include <string>
-#include <set>
+#include <vector>
 
 class ChannelManager {
 private:
-    std::set<std::string> channels; // Using set to store unique channels
+    std::vector<std::string> channels;  // Using vector to store channels
 
 public:
-    void loadChannels(const std::string& filename);
+    ChannelManager();  // Constructor to initialize the channel list
     void displayChannels() const;
 };
 
