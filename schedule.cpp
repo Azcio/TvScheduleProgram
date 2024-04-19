@@ -44,11 +44,11 @@ vector<ProgrammeSchedule> parseData(string EnterFile){ //using vectors to store 
 //DO: ADD THE HOURS PROPERLY, THE HOUR IS NOT WORKING PROPERLY, MINUTES IS BEING COUNTED AS HOURS
 tm calculateEndTime(const tm& startTime, const string& duration) {
     tm endTime = startTime;
-    int mins = 0, hours = 0; //the time (hr and min) is automatically set to 0 and increase by each duration of a programme and commerical breaks
-    sscanf(duration.c_str(), "%d hour", &hours); // get the hours from the duration object of each programme
+    int mins = 0; //, hours = 0; //the time (hr and min) is automatically set to 0 and increase by each duration of a programme and commerical breaks
+   // sscanf(duration.c_str(), "%d hour", &hours); // get the hours from the duration object of each programme
     sscanf(duration.c_str(), "%d mins", &mins); // get the minutes from the duration object of each programme
     endTime.tm_min += mins; // Add the minutes from the duration to the end time
-    endTime.tm_hour += hours + endTime.tm_min / 60; //Add the hours from the duration to the end time, including minutes past 60 (NOT WORKING PROPERLY)
+    endTime.tm_hour += endTime.tm_min / 60; //Add the hours from the duration to the end time, including minutes past 60 (NOT WORKING PROPERLY)
     endTime.tm_min %= 60; //reset minutes if they exceed 60 back to 00
     return endTime;
 }
