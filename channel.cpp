@@ -1,13 +1,15 @@
 #include "channel.h"
-#include <iostream>
 
-ChannelManager::ChannelManager() {
+ChannelManager::ChannelManager() : numChannels(10) {
     // Hardcoded list of channels
-    channels = {"Disney", "Channel x", "Vevo", "SportsX", "high", "laugh central", "high", "Disney", "High", "Vevo"};
+    std::string initChannels[10] = {"Disney", "Channel x", "Vevo", "SportsX", "high", "laugh central", "high", "Disney", "High", "Vevo"};
+    for (int i = 0; i < numChannels; ++i) {
+        channels[i] = initChannels[i];
+    }
 }
 
 void ChannelManager::displayChannels() const {
-    for (const auto& channel : channels) {
-        std::cout << channel << std::endl;
+    for (int i = 0; i < numChannels; ++i) {
+        std::cout << channels[i] << std::endl;
     }
 }
