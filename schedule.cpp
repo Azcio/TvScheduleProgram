@@ -172,6 +172,88 @@ void DailySchedule3(string EnterFile) {
     }
 }
 
+void DailySchedule4(string EnterFile) {
+    vector<ProgrammeSchedule> schedules = parseData(EnterFile);
+     
+     // randomize the programme order
+    srand(time(0)); // Seed the random number generator
+    random_shuffle(schedules.begin(), schedules.end());
+
+    // Start time for the first program
+    tm currentTime = {0};
+    currentTime.tm_hour = 6; // Start at 6 AM
+
+    cout << "=================================================================================================== \n";
+    cout << "Schedule 4 \n"; 
+
+    // display schedule 
+    for (const auto& program : schedules) {
+    tm endTime = calculateEndTime(currentTime, program.Duration);
+
+           // Check if end time has passed 22:00, if so, break the loop
+        if (endTime.tm_hour >= 22) {
+            break;
+        }
+
+        // Print program details
+        cout << "Channel: " << program.Channel << ", ";
+        cout << "Program: " << program.Name << ", ";
+        cout << "Start Time: " << setw(2) << setfill('0') << currentTime.tm_hour << ":"
+             << setw(2) << setfill('0') << currentTime.tm_min << "\n";
+
+        // Set current time for next program
+        currentTime = endTime;
+
+        // Add commercial break
+        currentTime.tm_min += 5; // 5 min commercial break
+        if (currentTime.tm_min >= 60) {
+            currentTime.tm_hour += 1; //add 1 to the hour if the minutes passes 60 (might not be working properly)
+            currentTime.tm_min -= 60; //if minutes passes 60 then reset the minutes
+        }
+    }
+}
+
+void DailySchedule5(string EnterFile) {
+    vector<ProgrammeSchedule> schedules = parseData(EnterFile);
+     
+     // randomize the programme order
+    srand(time(0)); // Seed the random number generator
+    random_shuffle(schedules.begin(), schedules.end());
+
+    // Start time for the first program
+    tm currentTime = {0};
+    currentTime.tm_hour = 6; // Start at 6 AM
+
+    cout << "=================================================================================================== \n";
+    cout << "Schedule 5 \n"; 
+
+    // display schedule 
+    for (const auto& program : schedules) {
+    tm endTime = calculateEndTime(currentTime, program.Duration);
+
+           // Check if end time has passed 22:00, if so, break the loop
+        if (endTime.tm_hour >= 22) {
+            break;
+        }
+
+        // Print program details
+        cout << "Channel: " << program.Channel << ", ";
+        cout << "Program: " << program.Name << ", ";
+        cout << "Start Time: " << setw(2) << setfill('0') << currentTime.tm_hour << ":"
+             << setw(2) << setfill('0') << currentTime.tm_min << "\n";
+
+        // Set current time for next program
+        currentTime = endTime;
+
+        // Add commercial break
+        currentTime.tm_min += 5; // 5 min commercial break
+        if (currentTime.tm_min >= 60) {
+            currentTime.tm_hour += 1; //add 1 to the hour if the minutes passes 60 (might not be working properly)
+            currentTime.tm_min -= 60; //if minutes passes 60 then reset the minutes
+        }
+    }
+}
+
 int main() {
     // Example usage: Generate schedule and display it
     DailySchedule("ProgrammeFiles.csv");
